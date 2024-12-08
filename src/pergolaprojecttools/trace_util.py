@@ -1,5 +1,3 @@
-import datetime
-from bctool import log
 import psutil
 import os
 
