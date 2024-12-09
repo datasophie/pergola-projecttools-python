@@ -1,4 +1,4 @@
-from pathlib import Path
+from os import getcwd
 import json
 
 from argparse import Namespace
@@ -7,7 +7,7 @@ from .exceptions import ConfigException
 
 class ConfigUtilBase:
 
-    config_path: str = f"{Path(__file__).parent.parent.parent.parent.parent.parent}/config/config.json"
+    config_path: str = f"{getcwd()}/config/config.json"
     key_argoverrides: str = "argoverrides"
 
     config_content: dict = None
