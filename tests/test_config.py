@@ -15,6 +15,26 @@ class TestConfigUtil(ConfigUtilBase):
     def get_batmans_car(cls):
         return cls.get_inner_value(cls.get_config_value('batmandetails'), 'preferredVehicle')
 
+class ReadmeConfigUtil(ConfigUtilBase):
+    import pathlib
+    config_path = f"{pathlib.Path(__file__).parent}/config/config-readme.json"
+
+    @classmethod
+    def get_user(cls) -> str:
+        return cls.get_config_value('username')
+
+    @classmethod
+    def get_appearance(cls) -> dict:
+        return cls.get_config_value('appearance')
+
+    @classmethod
+    def get_theme(cls) -> str:
+        return cls.get_inner_value(cls.get_config_value('appearance'), 'theme')
+
+    @classmethod
+    def get_size(cls) -> int:
+        return cls.get_inner_value(cls.get_config_value('appearance'), 'size')
+
 
 def test_no_config_file():
     config_util = NoFileConfigUtil()
@@ -34,3 +54,11 @@ def test_get_config():
 
     batman = config_util.get_batman()
     assert batman == "Bruce Wayne"
+
+def test_readme_1():
+    ConfigUtilBase.config_path = 'tests/config/config-readme.json'
+
+    assert ConfigUtilBase.get_config_value("username") == 'John'
+
+def test_readme_2():
+    assert ReadmeConfigUtil.get_size() == 500
