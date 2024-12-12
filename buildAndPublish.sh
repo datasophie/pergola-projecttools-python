@@ -15,7 +15,7 @@ echo "[CICD] Publishing"
 python3 -m twine upload dist/*
 
 #echo "[CICD] Publishing to TEST PyPI"
-#python3 -m twine upload --repository testpypi dist/*
+#python3 -m twine upload --repository testpypi dist/* --verbose
 
 #echo "[CICD] Publishing to locally configured repo"
 #python3 -m twine upload -r local dist/* --config-file pypirc.local
